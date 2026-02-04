@@ -9,5 +9,5 @@ func main() {
 
 	//fmt importado. Responsavel por fazer essa saida(dar o print)
 	//Println padrão, assim como no java, c e linguagens semelhantes
-	fmt.Println("Hello World!")
+	fmt.Println("Hello World! ")
 }
