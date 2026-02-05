@@ -58,6 +58,8 @@ func main() {
 	fmt.Println(p.Nome)
 	fmt.Println(p.Idade)
 
+	//t := new(Pessoa)
+
 	//Mudando o valor de informações de uma variavel
 	p.Nome = "Joao"
 	fmt.Println(p.Nome)
