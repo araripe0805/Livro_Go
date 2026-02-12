@@ -1,0 +1,34 @@
+package main
+
+import(
+	"fmt"
+)
+
+//Função variadica
+//É uma função que aceita uma quantidade variavel de argumentos
+fmt.Println(1)
+fmt.Println(1,2,3)
+
+//Como declarar
+func nome(parametroFixo tipo, ultimoParametro ... Tipo) 
+
+//exemplo
+//vals ...int significa que pode receber zero ou mais inteiros
+//Basicamente esse tipo no parametro é um []int, o go transforma os argumentos em um slice automaticamente
+func sum(vals ...int) int {
+	total := 0
+	for _, val := range vals {
+		total += val
+	}
+	return total
+}
+
+//O go faz algo como vals := []int{1,2,3,4} e passa esse slice para a função
+fmt.Println(sum())//0
+fmt.Println(sum(3))//3
+fmt.Println(sum(1,2,3,4))//10
+
+//Resumindo
+//Criação de um array temporario
+//Criação de uma slice apontando para ele
+//Passa a slice
