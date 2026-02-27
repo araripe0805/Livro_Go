@@ -31,13 +31,13 @@ func main() {
 		vetor:      vetor,
 	}
 
-	ml.insereFinal(10)
-	ml.insereFinal(20)
-	ml.insereFinal(30)
-	ml.insereFinal(40)
 	ml.insereFinal(50)
+	ml.insereFinal(20)
+	ml.insereFinal(60)
+	ml.insereFinal(10)
+	ml.insereFinal(40)
 	ml.imprimirLista()
-	ml.removePosicao(2)
+	ml.ordenarLista()
 	ml.imprimirLista()
 }
 
@@ -138,4 +138,100 @@ func (ml *minhaLista) removePosicao(pos int) {
 	}
 	ml.nElementos--
 	fmt.Printf("O elemento removido: %d\n", elementoRemovido)
+}
+
+func (ml minhaLista) copiarLista() []int {
+	if ml.estaVazio() {
+		fmt.Println("A lista está vazia")
+	}
+	vetorCopia := make([]int, ml.nElementos, ml.capacidade)
+	for i := 0; i < ml.nElementos; i++ {
+		vetorCopia[i] = ml.vetor[i]
+	}
+	return vetorCopia
+}
+
+func (ml minhaLista) contemLista(elemento int) bool {
+	if ml.estaVazio() {
+		fmt.Println("A lista está vazia")
+	}
+	for i := 0; i < ml.nElementos; i++ {
+		if ml.vetor[i] == elemento {
+			return true
+		}
+	}
+	return false
+}
+
+func (ml minhaLista) acesseLista(pos int) int {
+	if ml.estaVazio() {
+		fmt.Println("A lista está vazia")
+	}
+	if pos >= ml.nElementos {
+		fmt.Println("A posição que você deseja acessar não existe")
+	}
+	elemento := 0
+	for i := 0; i < ml.nElementos; i++ {
+		if i == pos {
+			elemento = ml.vetor[i]
+		}
+	}
+	return elemento
+}
+
+func (ml *minhaLista) alterarLista(pos, elemento int) {
+	if ml.estaVazio() {
+		fmt.Println("A lista está vazia")
+	}
+	if pos >= ml.nElementos {
+		fmt.Println("A posição que você deseja acessar não existe")
+	}
+	ml.vetor[pos] = elemento
+}
+
+func (ml minhaLista) indiceLista(elemento int) int {
+	if ml.estaVazio() {
+		fmt.Println("A lista está vazia")
+	}
+	for i := 0; i < ml.nElementos; i++ {
+		if ml.vetor[i] == elemento {
+			return i
+		}
+	}
+	return -1
+}
+
+func (ml minhaLista) subLista(a, b int) []int {
+	if ml.estaVazio() {
+		fmt.Println("A lista está vazia")
+	}
+	if a < 0 {
+		fmt.Println("Posição inicial invalida")
+	}
+	if b >= ml.nElementos {
+		fmt.Println("Posição final invalida")
+	}
+	if b-a <= 0 {
+		fmt.Println("Numeros de pos estão invalidos")
+	}
+	subLista := make([]int, 0, ml.capacidade)
+	for i := a; i < b; i++ {
+		subLista = append(subLista, ml.vetor[i])
+	}
+	return subLista
+}
+
+func (ml *minhaLista) ordenarLista() {
+	if ml.estaVazio() {
+		fmt.Println("A lista esta vazia")
+	}
+	for i := 0; i < ml.nElementos-1; i++ {
+		for j := i + 1; j < ml.nElementos; j++ {
+			if ml.vetor[i] > ml.vetor[j] {
+				aux := ml.vetor[i]
+				ml.vetor[i] = ml.vetor[j]
+				ml.vetor[j] = aux
+			}
+		}
+	}
 }
