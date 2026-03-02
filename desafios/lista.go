@@ -7,19 +7,19 @@ import (
 type Lista interface {
 	estaVazio() bool
 	estaCheio() bool
-	insereFinal()
-	insereInicio()
+	insereFinal(elemento int)
+	insereInicio(elemento int)
 	removeFinal()
 	removeInicio()
 	imprimirLista()
-	inserePosicao()
-	removePosicao()
+	inserePosicao(elemento, pos int)
+	removePosicao(pos int)
 	copiarLista() []int
-	contemLista() bool
-	acesseLista() int
-	alterarLista()
-	indiceLista() int
-	subLista() []int
+	contemLista(elemento int) bool
+	acesseLista(pos int) int
+	alterarLista(pos, elemento int)
+	indiceLista(elemento int) int
+	subLista(a, b int) []int
 	ordenarLista()
 }
 
@@ -56,6 +56,10 @@ func (ml minhaLista) estaVazio() bool {
 }
 
 func (ml minhaLista) imprimirLista() {
+	if ml.estaVazio() {
+		fmt.Println("A lista está vazia")
+		return
+	}
 	fmt.Print("Lista: ")
 	for i := 0; i < ml.nElementos; i++ {
 		if i == ml.nElementos-1 {
@@ -113,7 +117,7 @@ func (ml *minhaLista) removeFinal() {
 
 func (ml *minhaLista) inserePosicao(elemento, pos int) {
 	if ml.estaVazio() {
-		ml.insereFinal(elemento)
+		ml.insereInicio(elemento)
 		return
 	}
 	if ml.estaCheio() {
